@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tj.resolvedemo.mapper.JxlTableInfoMapper">
+
+    <!--线程插入-->
+    <insert id="startInsertJxlConInfos" parameterType="java.util.HashMap">
+        insert into JxlTable(id, serial_no, cloum0, cloum1, cloum2, cloum3, cloum4, cloum5, cloum6, cloum7, cloum8, cloum9, cloum10, cloum11)
+        <foreach collection="jxlTables" item="jxlTable" index="index" separator=" union all ">
+          select
+            createmaxno('jxlTableId', to_char(sysdate,'yyyyMMdd'), '0', 20) gzbId,
+            #{jxlTable.serialNo, jdbcType=VARCHAR},
+            #{jxlTable.cloum0, jdbcType=VARCHAR},
+            #{jxlTable.cloum1, jdbcType=VARCHAR},
+            #{jxlTable.cloum2, jdbcType=VARCHAR},
+            #{jxlTable.cloum3, jdbcType=VARCHAR},
+            #{jxlTable.cloum4, jdbcType=VARCHAR},
+            #{jxlTable.cloum5, jdbcType=VARCHAR},
+            #{jxlTable.cloum6, jdbcType=VARCHAR},
+            #{jxlTable.cloum7, jdbcType=VARCHAR},
+            #{jxlTable.cloum8, jdbcType=VARCHAR},
+            #{jxlTable.cloum9, jdbcType=VARCHAR},
+            #{jxlTable.cloum10, jdbcType=VARCHAR},
+            #{jxlTable.cloum11, jdbcType=VARCHAR}
+          from dual
+        </foreach>
+    </insert>
+    <!--#{gzbInfos[${index}].ivstMngID, jdbcType=VARCHAR}-->
+
+
+
+
+</mapper>

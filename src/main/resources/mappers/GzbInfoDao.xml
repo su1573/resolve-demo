@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tj.resolvedemo.mapper.GzbInfoMapper">
+
+    <insert id="insertGzbInfos" parameterType="java.util.HashMap">
+        insert into GZB(id,fbjsj,fbjsj_gzzz)
+        <foreach collection="gzbInfos" item="gzb" index="index" separator=" union all ">
+            select
+            createmaxno('gzbId', to_char(sysdate,'yyyyMMdd'), '0', 20) gzbId,
+            #{gzb.FBJSJ, jdbcType=NUMERIC},
+            #{gzb.FBJSJ_GZZZ, jdbcType=NUMERIC}
+            from dual
+        </foreach>
+    </insert>
+
+
+    <insert id="startInsertGzbInfos" parameterType="java.util.HashMap">
+        insert into GZB(id, fbjsj, fbjsj_gzzz, fbjsj_sz, fcb_jz_bl, fcur_jy_fy, fdate, fgz_zz, fhqbz, fhqjg, fkmbm,
+                      fkmmc, fqyxx, fsjsj, fsjsj_gzzz, fsjsj_sz, fsz_jz_bl, ftpxx, fzqcb, fzqsl, serial_no)
+        <foreach collection="gzbInfos" item="gzb" index="index" separator=" union all ">
+          select
+            createmaxno('gzbId', to_char(sysdate,'yyyyMMdd'), '0', 20) gzbId,
+            #{gzb.FBJSJ, jdbcType=NUMERIC},
+            #{gzb.FBJSJ_GZZZ, jdbcType=NUMERIC},
+            #{gzb.FBJSJ_SZ, jdbcType=NUMERIC},
+            #{gzb.FCb_Jz_bl, jdbcType=VARCHAR},
+            #{gzb.FCurJyFy, jdbcType=NUMERIC},
+            #{gzb.FDate, jdbcType=DATE},
+            #{gzb.FGz_zz, jdbcType=NUMERIC},
+            #{gzb.FHqbz, jdbcType=VARCHAR},
+            #{gzb.FHqjg, jdbcType=NUMERIC},
+            #{gzb.FKmbm, jdbcType=VARCHAR},
+
+            #{gzb.FKmmc, jdbcType=VARCHAR},
+            #{gzb.FQyxx, jdbcType=VARCHAR},
+            #{gzb.FSJSJ, jdbcType=NUMERIC},
+            #{gzb.FSJSJ_GZZZ, jdbcType=NUMERIC},
+            #{gzb.FSJSJ_SZ, jdbcType=NUMERIC},
+            #{gzb.FSz_Jz_bl, jdbcType=VARCHAR},
+            #{gzb.FTpxx, jdbcType=VARCHAR},
+            #{gzb.FZqcb, jdbcType=NUMERIC},
+            #{gzb.FZqsl, jdbcType=NUMERIC},
+            #{gzb.serialNo, jdbcType=NUMERIC}
+          from dual
+        </foreach>
+    </insert>
+
+    <!--线程插入-->
+    <insert id="startInsertGzbConInfos" parameterType="java.util.HashMap">
+        insert into GZB(id, fbjsj, fbjsj_gzzz, fbjsj_sz, fcb_jz_bl, fcur_jy_fy, fdate, fgz_zz, fhqbz, fhqjg, fkmbm,
+                      fkmmc, fqyxx, fsjsj, fsjsj_gzzz, fsjsj_sz, fsz_jz_bl, ftpxx, fzqcb, fzqsl, serial_no)
+        <foreach collection="gzbInfos" item="gzb" index="index" separator=" union all ">
+          select
+            createmaxno('gzbId', to_char(sysdate,'yyyyMMdd'), '0', 20) gzbId,
+            #{gzb.FBJSJ, jdbcType=NUMERIC},
+            #{gzb.FBJSJ_GZZZ, jdbcType=NUMERIC},
+            #{gzb.FBJSJ_SZ, jdbcType=NUMERIC},
+            #{gzb.FCb_Jz_bl, jdbcType=VARCHAR},
+            #{gzb.FCurJyFy, jdbcType=NUMERIC},
+            #{gzb.FDate, jdbcType=DATE},
+            #{gzb.FGz_zz, jdbcType=NUMERIC},
+            #{gzb.FHqbz, jdbcType=VARCHAR},
+            #{gzb.FHqjg, jdbcType=NUMERIC},
+            #{gzb.FKmbm, jdbcType=VARCHAR},
+
+            #{gzb.FKmmc, jdbcType=VARCHAR},
+            #{gzb.FQyxx, jdbcType=VARCHAR},
+            #{gzb.FSJSJ, jdbcType=NUMERIC},
+            #{gzb.FSJSJ_GZZZ, jdbcType=NUMERIC},
+            #{gzb.FSJSJ_SZ, jdbcType=NUMERIC},
+            #{gzb.FSz_Jz_bl, jdbcType=VARCHAR},
+            #{gzb.FTpxx, jdbcType=VARCHAR},
+            #{gzb.FZqcb, jdbcType=NUMERIC},
+            #{gzb.FZqsl, jdbcType=NUMERIC},
+            #{gzb.serialNo, jdbcType=NUMERIC}
+          from dual
+        </foreach>
+    </insert>
+    <!--#{gzbInfos[${index}].ivstMngID, jdbcType=VARCHAR}-->
+
+
+
+
+</mapper>
