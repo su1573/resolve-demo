@@ -23,21 +23,12 @@ spring:
 #    username: opension
 #    password: opension
 
-#    url: jdbc:oracle:thin:@139.9.130.209:1521/orcl
-#    username: testmdb
-#    password: testmdb
-
 #远程云服务器
-    url: jdbc:oracle:thin:@101.201.126.203:1521/orcl
-#    url: jdbc:oracle:thin:@localhost:1521/orcl
+
+    url: jdbc:oracle:thin:@localhost:1521/orcl
     username: pension_test3
     password: pension_test3
 
-#人保46数据库
-#    url: jdbc:oracle:thin:@10.132.74.46:1521/orcl
-    #    url: jdbc:oracle:thin:@localhost:1521/orcl
-#    username: opension
-#    password: opension
     initialSize: 1
     minIdle: 3
     maxActive: 20

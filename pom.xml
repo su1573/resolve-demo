@@ -35,12 +35,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!--ojdbc7，连接oracle 12c是自己本地的jar导入到maven仓库后，再引的 6是连接11g的-->
-        <!--<dependency>
+        <!--ojdbc7，连接oracle 12c是自己本地的jar导入到maven仓库后，再引的 6是连接11g的；jar包在/data目录中-->
+        <dependency>
             <groupId>ojdbc</groupId>
             <artifactId>ojdbc</artifactId>
             <version>7</version>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>ojdbc6</groupId>
             <artifactId>ojdbc6</artifactId>
@@ -72,12 +72,6 @@
         </dependency>-->
 
         <!--解析mdb的依赖-->
-        <!--<dependency>
-            <groupId>net.sf.ucanaccess</groupId>
-            <artifactId>ucanaccess</artifactId>
-            <version>4.0.4</version>
-        </dependency>-->
-
         <!-- MDB文件 -->
         <dependency>
             <groupId>org.hsqldb</groupId>
@@ -109,7 +103,7 @@
             <version>2.1.2</version>
         </dependency>
 
-        <!--jxl读取xls文件-->
+        <!--jxl包读取xls文件-->
         <dependency>
             <groupId>net.sourceforge.jexcelapi</groupId>
             <artifactId>jxl</artifactId>
@@ -117,29 +111,11 @@
         </dependency>
 
         <!--poi包-->
-        <!--<dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>3.10-FINAL</version>
-        </dependency>-->
-
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>3.17</version>
         </dependency>
-
-        <!--<dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>ooxml-schemas</artifactId>
-            <version>1.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>3.10-FINAL</version>
-        </dependency>-->
 
         <!--easyexcel包-->
         <dependency>
@@ -148,20 +124,7 @@
             <version>2.0.5</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.dhatim/fastexcel-reader -->
         <!--fastexcel包-->
-        <!--<dependency>
-            <groupId>org.dhatim</groupId>
-            <artifactId>fastexcel</artifactId>
-            <version>0.12.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.dhatim</groupId>
-            <artifactId>fastexcel-reader</artifactId>
-            <version>0.12.3</version>
-        </dependency>-->
-
         <!-- https://mvnrepository.com/artifact/net.apexes.fastexcel/fastexcel -->
         <dependency>
             <groupId>net.apexes.fastexcel</groupId>

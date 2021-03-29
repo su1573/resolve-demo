@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
  * @program: resolve-demo
  * @Date: 2021/3/18 13:56
  * @Author: Mr.SU
- * @Description:
+ * @Description: 解析MDB文件
  */
 @RestController
 public class MdbGzbReadController {
@@ -74,12 +74,12 @@ public class MdbGzbReadController {
     }
 
     /**
-    * @Description: 测试解析多个mdb文件
-    * @param: "[]"
-    * @Return: com.tj.resolvedemo.util.ResultBean
-    * @Author: supenghui
-    * @Date: 2021/3/18 15:05
-    */
+     * @Description: 测试解析多个mdb文件
+     * @param: "[]"
+     * @Return: com.tj.resolvedemo.util.ResultBean
+     * @Author: supenghui
+     * @Date: 2021/3/18 15:05
+     */
     @GetMapping("testMulMDB")
     public ResultBean testResolveMulMDBFile(Integer num, String fileName) {
         ResolveFile rmf = new ResolveFile();
@@ -105,21 +105,21 @@ public class MdbGzbReadController {
     }
 
     /**
-    * @Description: 测试sql语句添加数据
-    * @param: "[]"
-    * @Return: com.tj.resolvedemo.util.ResultBean
-    * @Author: supenghui
-    * @Date: 2021/3/21 22:30
-    */
+     * @Description: 测试sql语句添加数据
+     * @param: "[]"
+     * @Return: com.tj.resolvedemo.util.ResultBean
+     * @Author: supenghui
+     * @Date: 2021/3/21 22:30
+     */
     @GetMapping("testInsert")
     public ResultBean testInsertGzb() {
         long startTime = System.currentTimeMillis();
 
-        HashMap<String,Object> map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         List<Gzb> gzbList = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             Gzb gzb = new Gzb();
-            gzb.setFBJSJ(Double.parseDouble("8888"+i));
+            gzb.setFBJSJ(Double.parseDouble("8888" + i));
             gzb.setFBJSJ_GZZZ(Double.parseDouble("9999" + i));
             gzbList.add(gzb);
         }
@@ -132,12 +132,12 @@ public class MdbGzbReadController {
     }
 
     /**
-    * @Description: 单线程解析文件
-    * @param: "[]"
-    * @Return: com.tj.resolvedemo.util.ResultBean
-    * @Author: supenghui
-    * @Date: 2021/3/21 22:53
-    */
+     * @Description: 单线程解析文件
+     * @param: "[]"
+     * @Return: com.tj.resolvedemo.util.ResultBean
+     * @Author: supenghui
+     * @Date: 2021/3/21 22:53
+     */
     @GetMapping("startInsertGzb")
     public ResultBean startInsertGzb(Integer num, String fileName) {
         ResolveFile rmf = new ResolveFile();
@@ -148,7 +148,7 @@ public class MdbGzbReadController {
         long startTime = System.currentTimeMillis();
         try {
             for (int i = 0; i < num; i++) {
-                HashMap<String,Object> map = new HashMap<>();
+                HashMap<String, Object> map = new HashMap<>();
                 File newpaths = new File(target + fileName + 0 + ext);
                 List<Gzb> gzbList = rmf.readFileSingalTableACCESS(newpaths); //读取单表
                 map.put("gzbInfos", gzbList);
@@ -165,19 +165,26 @@ public class MdbGzbReadController {
         return ResultBean.success("解析成功，消耗时间：" + result + "ms");
     }
 
+    /**
+    * @Description: 根据文件名和数量复制文件相应的数量
+    * @param: "[fileName, num]"
+    * @Return: void
+    * @Author: supenghui
+    * @Date: 2021/3/29 9:39
+    */
     @GetMapping("copyFile")
-    public void copyFile() {
-        String source = target+ "0315-file.mdb";
+    public void copyFile(String fileName, Integer num) {
+        String source = target + fileName + ".mdb";
 //        String target = "/usr/local/testmdb/";
 //        String target = "C:\\01-testmdb\\test1000\\";
-        String fileName = "0315-file";
+//        String fileName = "0315-file";
         String ext = ".mdb";
 
         //直接复制
         File file = new File(source); //共享存储文件
 
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < num; i++) {
             File newpaths = new File(target + fileName + i + ext);
             //复制文件到指定目录
             try {
@@ -194,12 +201,12 @@ public class MdbGzbReadController {
     }
 
     /**
-    * @Description: 多线程异步，不等待执行完毕直接返回结果
-    * @param: "[num, start, fileName]"
-    * @Return: com.tj.resolvedemo.util.ResultBean
-    * @Author: supenghui
-    * @Date: 2021/3/22 19:14
-    */
+     * @Description: 多线程异步，不等待执行完毕直接返回结果
+     * @param: "[num, start, fileName]"
+     * @Return: com.tj.resolvedemo.util.ResultBean
+     * @Author: supenghui
+     * @Date: 2021/3/22 19:14
+     */
     @GetMapping("startInsertGzbThread")
     public ResultBean startInsertGzbThread(Integer num, String fileName, Integer threadNum) {
 //        String target = "D:\\00-2021-mdb\\test1000\\"; //本地路径
@@ -219,10 +226,10 @@ public class MdbGzbReadController {
         long startTime = System.currentTimeMillis();
         try {
             for (int i = 0; i < length; i++) {
-                new ExecShortMessageThreadUtil(start*i, start*(i+1), path, ext);
+                new ExecShortMessageThreadUtil(start * i, start * (i + 1), path, ext);
             }
             if (mod != 0 && length != 1) {
-                new ExecShortMessageThreadUtil(start*threadNum, num, path, ext);
+                new ExecShortMessageThreadUtil(start * threadNum, num, path, ext);
             }
 
 
@@ -235,12 +242,12 @@ public class MdbGzbReadController {
     }
 
     /**
-    * @Description:  多线程异步，等待多执行完成后反馈消耗总时间
-    * @param: "[num, fileName, threadNum]"
-    * @Return: com.tj.resolvedemo.util.ResultBean
-    * @Author: supenghui
-    * @Date: 2021/3/23 11:25
-    */
+     * @Description: 多线程异步，等待多执行完成后反馈消耗总时间
+     * @param: "[num, fileName, threadNum]"
+     * @Return: com.tj.resolvedemo.util.ResultBean
+     * @Author: supenghui
+     * @Date: 2021/3/23 11:25
+     */
     @GetMapping("startInsertGzbThreadAll")
     public ResultBean startInsertGzbThreadAll(Integer num, String fileName, Integer threadNum) {
 //        String target = "D:\\00-2021-mdb\\test1000\\"; //本地路径
@@ -260,9 +267,9 @@ public class MdbGzbReadController {
         long startTime = System.currentTimeMillis();
         try {
 //            ThreadPoolExecutor executorService = InitThreadPoolServlet.getExecutor();
-            ThreadPoolExecutor  executorService  = new ThreadPoolExecutor(10, 10, 0L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(10));
+            ThreadPoolExecutor executorService = new ThreadPoolExecutor(10, 10, 0L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(10));
             for (int i = 0; i < length; i++) {
-                executorService.execute(new ResolveMDBFileThread(start*i, start*(i+1), path, ext));
+                executorService.execute(new ResolveMDBFileThread(start * i, start * (i + 1), path, ext));
             }
             if (mod != 0 && length != 1) {
                 executorService.execute(new ResolveMDBFileThread(start * threadNum, num, path, ext));

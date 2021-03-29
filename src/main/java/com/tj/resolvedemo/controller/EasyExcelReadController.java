@@ -18,13 +18,13 @@ import java.util.concurrent.TimeUnit;
  * @program: resolve-demo
  * @Date: 2021/3/25 10:28
  * @Author: Mr.SU
- * @Description:
+ * @Description: EasyExcel解析XLS文件
  */
 @RestController
 @RequestMapping("/easy")
 public class EasyExcelReadController {
 
-    private static Logger logger = LoggerFactory.getLogger(PoiReadController.class);
+    private static Logger logger = LoggerFactory.getLogger(EasyExcelReadController.class);
 
     @Value("${target}")
     private String target;
@@ -35,6 +35,7 @@ public class EasyExcelReadController {
     * @Return: com.tj.resolvedemo.util.ResultBean
     * @Author: supenghui
     * @Date: 2021/3/25 10:30
+     * 调用：
     */
     @GetMapping("/startInsertThreadAll")
     public ResultBean startInsertEasyExcelThreadAll(Integer num, String fileName, Integer threadNum) {
@@ -115,14 +116,5 @@ public class EasyExcelReadController {
         logger.info(Thread.currentThread().getName() + "消耗总时间：{}ms", result);
         return ResultBean.success("解析成功，消耗时间：" + result + "ms");
     }
-
-
-
-
-
-
-
-
-
 
 }

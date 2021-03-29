@@ -1,0 +1,18 @@
+一、maven引本地jar包到仓库
+
+1、maven添加本地依赖jar包
+mvn install:install-file -Dfile=D:/Maven\repository\ojdbc\ojdbc\7/ojdbc7.jar -DgroupId=ojdbc -DartifactId=ojdbc -Dversion=7 -Dpackaging=jar
+
+-Dfile是本地包所在路径，可以写target下面的包，这样的话每次使用maven的install命令，都可以更新仓库里的依赖包。
+-DgroupId是pom.xml在的groupId
+-DartifactId是pom.xml在的artifactId
+-Dversion是pom.xml在的version
+
+ps:DgroupId、DartifactId、Dversion只能是一个单词或数字，不能有多层；比如：-DgroupId=com/ojdbc/7或者-Dversion=7.0.0.1 是不允许的，执行会出错
+
+2、其他项目下次使用直接填写依赖即可
+	<dependency>
+      <groupId>ojdbc</groupId>
+      <artifactId>ojdbc</artifactId>
+      <version>7</version>
+    </dependency>

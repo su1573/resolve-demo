@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -20,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * @program: resolve-demo
  * @Date: 2021/3/23 15:53
  * @Author: Mr.SU
- * @Description:
+ * @Description: JXL解析XLS文件
  */
 @RestController
 @RequestMapping("/jxl")
@@ -72,34 +69,5 @@ public class JxlReadController {
         logger.info(Thread.currentThread().getName() + "消耗总时间：{}ms", result);
         return ResultBean.success("解析成功，消耗时间：" + result + "ms");
     }
-
-    @GetMapping("/copyXlsFile")
-    public  void copyFile() {
-        String source = target+"江西海富通0312_工行.xls";
-//        String source = "D:\\00-2021-mdb\\testXls1000\\江西海富通0312_工行.xls";
-
-        String fileName = "江西海富通0312_工行";
-        String ext = ".xls";
-
-        //直接复制
-        File file = new File(source); //共享存储文件
-
-        for (int i = 0; i < 1000; i++) {
-            File newpaths = new File(target + fileName + i + ext);
-            //复制文件到指定目录
-            try {
-                if (!newpaths.exists()) {
-                    Files.copy(file.toPath(), newpaths.toPath());
-                } else {
-                    newpaths.delete();
-                    Files.copy(file.toPath(), newpaths.toPath());
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-
 
 }
