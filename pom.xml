@@ -36,11 +36,11 @@
             <scope>test</scope>
         </dependency>
         <!--ojdbc7，连接oracle 12c是自己本地的jar导入到maven仓库后，再引的 6是连接11g的；jar包在/data目录中-->
-        <dependency>
+        <!--<dependency>
             <groupId>ojdbc</groupId>
             <artifactId>ojdbc</artifactId>
             <version>7</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>ojdbc6</groupId>
             <artifactId>ojdbc6</artifactId>
@@ -130,6 +130,13 @@
             <groupId>net.apexes.fastexcel</groupId>
             <artifactId>fastexcel</artifactId>
             <version>0.5.3</version>
+        </dependency>
+
+        <!--mysql依赖-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
 

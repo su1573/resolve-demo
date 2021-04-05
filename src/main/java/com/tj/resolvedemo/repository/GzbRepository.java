@@ -1,6 +1,6 @@
 package com.tj.resolvedemo.repository;
 
-import com.tj.resolvedemo.domain.Gzb;
+import com.tj.resolvedemo.domain.GzbTable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -9,9 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @Author: Mr.SU
  * @Description:
  */
-//public interface GzbRepository extends JpaRepository<Gzb, Integer> {
-//}
-
-public class GzbRepository {
-
+public interface GzbRepository extends JpaRepository<GzbTable, Integer> {
 }

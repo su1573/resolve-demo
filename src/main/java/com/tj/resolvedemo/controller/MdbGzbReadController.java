@@ -1,13 +1,16 @@
 package com.tj.resolvedemo.controller;
 
 import com.tj.resolvedemo.domain.Gzb;
+import com.tj.resolvedemo.domain.GzbTable;
 import com.tj.resolvedemo.mapper.GzbInfoMapper;
+import com.tj.resolvedemo.repository.GzbRepository;
 import com.tj.resolvedemo.test.ResolveFile;
 import com.tj.resolvedemo.util.ExecShortMessageThreadUtil;
 import com.tj.resolvedemo.util.ResolveMDBFileThread;
 import com.tj.resolvedemo.util.ResultBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,8 +41,8 @@ public class MdbGzbReadController {
     private String target;
 
 
-//    @Autowired
-//    private GzbRepository gzbRepository;
+    @Autowired
+    private GzbRepository gzbRepository;
 
     @Autowired
     private GzbInfoMapper gzbInfoMapper;
@@ -62,7 +65,13 @@ public class MdbGzbReadController {
         try {
             File newpaths = new File(target + fileName + 0 + ext);
             List<Gzb> gzbList = rmf.readFileSingalTableACCESS(newpaths); //读取单表
-//            gzbRepository.saveAll(gzbList);
+            List<GzbTable> gzbTables = new ArrayList<>();
+            for (Gzb gzb : gzbList) {
+                GzbTable gzbTable = new GzbTable();
+                BeanUtils.copyProperties(gzb, gzbTable);
+                gzbTables.add(gzbTable);
+            }
+            gzbRepository.saveAll(gzbTables);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -166,12 +175,12 @@ public class MdbGzbReadController {
     }
 
     /**
-    * @Description: 根据文件名和数量复制文件相应的数量
-    * @param: "[fileName, num]"
-    * @Return: void
-    * @Author: supenghui
-    * @Date: 2021/3/29 9:39
-    */
+     * @Description: 根据文件名和数量复制文件相应的数量
+     * @param: "[fileName, num]"
+     * @Return: void
+     * @Author: supenghui
+     * @Date: 2021/3/29 9:39
+     */
     @GetMapping("copyFile")
     public void copyFile(String fileName, Integer num) {
         String source = target + fileName + ".mdb";

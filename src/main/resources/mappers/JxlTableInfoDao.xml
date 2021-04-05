@@ -3,8 +3,11 @@
 
 <mapper namespace="com.tj.resolvedemo.mapper.JxlTableInfoMapper">
 
+    <!--orecle ：createmaxno('jxlTableId', to_char(sysdate,'yyyyMMdd'), '0', 19) gzbId, -->
+    <!--mysql ： createmaxno('jxlTableId', date_format(SYSDATE(),"%Y%m%d"), '0', 19), -->
     <!--线程插入-->
-    <insert id="startInsertJxlConInfos" parameterType="java.util.HashMap">
+    <!--oracle插入表语句-->
+    <insert id="startInsertJxlConInfos_oracle" parameterType="java.util.HashMap">
         insert into JxlTable(id, serial_no, cloum0, cloum1, cloum2, cloum3, cloum4, cloum5, cloum6, cloum7, cloum8, cloum9, cloum10, cloum11)
         <foreach collection="jxlTables" item="jxlTable" index="index" separator=" union all ">
           select
@@ -25,9 +28,29 @@
           from dual
         </foreach>
     </insert>
-    <!--#{gzbInfos[${index}].ivstMngID, jdbcType=VARCHAR}-->
 
-
-
+    <!--mysql使用主键自增，添加属性：useGeneratedKeys="true" keyProperty="id" keyColumn = "id"-->
+    <!--useGeneratedKeys="true"  设置主键自增;keyProperty="id"   对应的对象;keyColumn = "id"    对应的数据库字段，默认对应表的第一个字段。-->
+    <!--mysql插入表语句-->
+    <insert id="startInsertJxlConInfos" parameterType="java.util.HashMap" useGeneratedKeys="true" keyColumn = "id">
+        insert into JxlTable(serial_no, cloum0, cloum1, cloum2, cloum3, cloum4, cloum5, cloum6, cloum7, cloum8, cloum9, cloum10, cloum11)
+        <foreach collection="jxlTables" item="jxlTable" index="index" separator=" union all ">
+          select
+            #{jxlTable.serialNo, jdbcType=VARCHAR},
+            #{jxlTable.cloum0, jdbcType=VARCHAR},
+            #{jxlTable.cloum1, jdbcType=VARCHAR},
+            #{jxlTable.cloum2, jdbcType=VARCHAR},
+            #{jxlTable.cloum3, jdbcType=VARCHAR},
+            #{jxlTable.cloum4, jdbcType=VARCHAR},
+            #{jxlTable.cloum5, jdbcType=VARCHAR},
+            #{jxlTable.cloum6, jdbcType=VARCHAR},
+            #{jxlTable.cloum7, jdbcType=VARCHAR},
+            #{jxlTable.cloum8, jdbcType=VARCHAR},
+            #{jxlTable.cloum9, jdbcType=VARCHAR},
+            #{jxlTable.cloum10, jdbcType=VARCHAR},
+            #{jxlTable.cloum11, jdbcType=VARCHAR}
+          from dual
+        </foreach>
+    </insert>
 
 </mapper>

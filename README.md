@@ -22,7 +22,7 @@ http://localhost:8080/copyFile?fileName=0315-file.mdb&num=1000
 
 2、解析mdb文件：
 
-http://localhost:8080/startInsertGzbThread?num=1&fileName=0315-file&threadNum=3
+http://localhost:8080/startInsertGzbThreadAll?num=1&fileName=0315-file&threadNum=3
 
 3、JXL解析xls文件
 
