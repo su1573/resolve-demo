@@ -3,7 +3,6 @@ package com.tj.resolvedemo.controller;
 import com.tj.resolvedemo.domain.Gzb;
 import com.tj.resolvedemo.domain.GzbTable;
 import com.tj.resolvedemo.mapper.GzbInfoMapper;
-import com.tj.resolvedemo.repository.GzbRepository;
 import com.tj.resolvedemo.test.ResolveFile;
 import com.tj.resolvedemo.util.ExecShortMessageThreadUtil;
 import com.tj.resolvedemo.util.ResolveMDBFileThread;
@@ -41,8 +40,8 @@ public class MdbGzbReadController {
     private String target;
 
 
-    @Autowired
-    private GzbRepository gzbRepository;
+//    @Autowired
+//    private GzbRepository gzbRepository;
 
     @Autowired
     private GzbInfoMapper gzbInfoMapper;
@@ -71,7 +70,7 @@ public class MdbGzbReadController {
                 BeanUtils.copyProperties(gzb, gzbTable);
                 gzbTables.add(gzbTable);
             }
-            gzbRepository.saveAll(gzbTables);
+//            gzbRepository.saveAll(gzbTables); mysql使用时插入
         } catch (Exception e) {
             e.printStackTrace();
         }

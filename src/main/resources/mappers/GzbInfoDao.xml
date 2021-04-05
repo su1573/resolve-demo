@@ -52,7 +52,7 @@
 
     <!--线程插入 startInsertGzbConInfos-->
     <!--oracle插入表语句-->
-    <insert id="startInsertGzbConInfos_oracle" parameterType="java.util.HashMap">
+    <insert id="startInsertGzbConInfos" parameterType="java.util.HashMap">
         insert into GZB(id, fbjsj, fbjsj_gzzz, fbjsj_sz, fcb_jz_bl, fcur_jy_fy, fdate, fgz_zz, fhqbz, fhqjg, fkmbm,
                       fkmmc, fqyxx, fsjsj, fsjsj_gzzz, fsjsj_sz, fsz_jz_bl, ftpxx, fzqcb, fzqsl, serial_no)
         <foreach collection="gzbInfos" item="gzb" index="index" separator=" union all ">
@@ -87,7 +87,7 @@
     <!--mysql使用主键自增，添加属性：useGeneratedKeys="true" keyProperty="id" keyColumn = "id"-->
     <!--useGeneratedKeys="true"  设置主键自增;keyProperty="id"   对应的对象;keyColumn = "id"    对应的数据库字段，默认对应表的第一个字段。-->
     <!--mysql插入表语句-->
-    <insert id="startInsertGzbConInfos" parameterType="java.util.HashMap" useGeneratedKeys="true" keyColumn = "id">
+    <insert id="startInsertGzbConInfos_mysql" parameterType="java.util.HashMap" useGeneratedKeys="true" keyColumn = "id">
         insert into GZB(fbjsj, fbjsj_gzzz, fbjsj_sz, fcb_jz_bl, fcur_jy_fy, fdate, fgz_zz, fhqbz, fhqjg, fkmbm,
         fkmmc, fqyxx, fsjsj, fsjsj_gzzz, fsjsj_sz, fsz_jz_bl, ftpxx, fzqcb, fzqsl, serial_no)
         <foreach collection="gzbInfos" item="gzb" index="index" separator=" union all ">

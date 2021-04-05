@@ -7,7 +7,7 @@
     <!--mysql ： createmaxno('jxlTableId', date_format(SYSDATE(),"%Y%m%d"), '0', 19), -->
     <!--线程插入-->
     <!--oracle插入表语句-->
-    <insert id="startInsertJxlConInfos_oracle" parameterType="java.util.HashMap">
+    <insert id="startInsertJxlConInfos" parameterType="java.util.HashMap">
         insert into JxlTable(id, serial_no, cloum0, cloum1, cloum2, cloum3, cloum4, cloum5, cloum6, cloum7, cloum8, cloum9, cloum10, cloum11)
         <foreach collection="jxlTables" item="jxlTable" index="index" separator=" union all ">
           select
@@ -32,7 +32,7 @@
     <!--mysql使用主键自增，添加属性：useGeneratedKeys="true" keyProperty="id" keyColumn = "id"-->
     <!--useGeneratedKeys="true"  设置主键自增;keyProperty="id"   对应的对象;keyColumn = "id"    对应的数据库字段，默认对应表的第一个字段。-->
     <!--mysql插入表语句-->
-    <insert id="startInsertJxlConInfos" parameterType="java.util.HashMap" useGeneratedKeys="true" keyColumn = "id">
+    <insert id="startInsertJxlConInfos_mysql" parameterType="java.util.HashMap" useGeneratedKeys="true" keyColumn = "id">
         insert into JxlTable(serial_no, cloum0, cloum1, cloum2, cloum3, cloum4, cloum5, cloum6, cloum7, cloum8, cloum9, cloum10, cloum11)
         <foreach collection="jxlTables" item="jxlTable" index="index" separator=" union all ">
           select

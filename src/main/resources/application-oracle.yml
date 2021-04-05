@@ -5,7 +5,7 @@ spring:
     #远程云服务器oracle
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName:
-    url: jdbc:oracle:thin:@localhost:1521/orcl
+    url: jdbc:oracle:thin:@101.201.126.203:1521/orcl
     username: pension_test3
     password: pension_test3
     initialSize: 1

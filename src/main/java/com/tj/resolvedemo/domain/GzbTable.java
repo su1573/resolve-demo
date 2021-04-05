@@ -1,12 +1,5 @@
 package com.tj.resolvedemo.domain;
 
-import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.Proxy;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.util.Date;
 
 /**
@@ -15,14 +8,14 @@ import java.util.Date;
  * @Author: Mr.SU
  * @Description:
  */
-@Entity
-@Proxy(lazy = false) //设置懒加载方式
-@DynamicUpdate   //自动更新
+//@Entity
+//@Proxy(lazy = false) //设置懒加载方式
+//@DynamicUpdate   //自动更新
 public class GzbTable {
 
     /** 主键id. */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String serialNo; //序号
