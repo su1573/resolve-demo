@@ -7,9 +7,9 @@ target: //usr//local//testxls//
 
 ###########解析MDB路径
 #本地
-targetMDB: D:\\00-2021-mdb\\test1000\\
+#targetMDB: D:\\00-2021-mdb\\test1000\\
 #服务器
-#targetMDB: //usr//local//testmdb//
+targetMDB: //usr//local//testmdb//
 
 server:
   port: 8080
@@ -23,4 +23,4 @@ mybatis:
 
 spring:
   profiles:
-    active: mysql
+    active: mysql_dev

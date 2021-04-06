@@ -1,0 +1,25 @@
+
+
+spring:
+  datasource:
+
+    driver-class-name: com.mysql.cj.jdbc.Driver
+      #    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 666666
+#    测试
+    url: jdbc:mysql://10.129.169.170:3306/invest_supervision?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    hikari:
+      connection-timeout: 60000
+      validation-timeout: 3000
+      idle-timeout: 60000
+      login-timeout: 5
+      max-lifetime: 60000
+      maximum-pool-size: 10
+      minimum-idle: 10
+      read-only: false
+
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
