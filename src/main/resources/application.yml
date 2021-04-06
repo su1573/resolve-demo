@@ -1,15 +1,17 @@
 #文件路径
 ###########解析excel路径
 #本地
-#target: D:\00-2021-mdb\testXls1000\
+target: D:\00-2021-mdb\testXls1000\
+#target: E:\\usr\\local\\testxls\\
 #服务器
-target: //usr//local//testxls//
+#target: //usr//local//testxls//
 
 ###########解析MDB路径
 #本地
-#targetMDB: D:\\00-2021-mdb\\test1000\\
+targetMDB: D:\\00-2021-mdb\\test1000\\
+#targetMDB: E:\\usr\\local\\testmdb\\
 #服务器
-targetMDB: //usr//local//testmdb//
+#targetMDB: //usr//local//testmdb//
 
 server:
   port: 8080
@@ -22,5 +24,7 @@ mybatis:
   mapper-locations: classpath:/mappers/*.xml
 
 spring:
+#  application:
+#    name: resolve
   profiles:
     active: mysql_dev

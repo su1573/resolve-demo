@@ -183,11 +183,9 @@ public class MdbGzbReadController {
      */
     @GetMapping("copyFile")
     public void copyFile(String fileName, Integer num) {
-        String source = target + fileName + ".mdb";
-//        String target = "/usr/local/testmdb/";
-//        String target = "C:\\01-testmdb\\test1000\\";
-//        String fileName = "0315-file";
-        String ext = ".mdb";
+        String source = target + fileName;
+        String[] arr = fileName.split("\\.");
+        String ext = arr[1];
 
         //直接复制
         File file = new File(source); //共享存储文件
@@ -301,6 +299,17 @@ public class MdbGzbReadController {
         long result = endTime - startTime;
         logger.info(Thread.currentThread().getName() + "消耗总时间：{}ms", result);
         return ResultBean.success("解析成功，消耗时间：" + result + "ms");
+    }
+
+
+    public static void main(String[] args) {
+//        String fileName = "0315-file.mdb";
+        String fileName = "江西海富通.xls";
+        String[] arr = fileName.split("\\.");
+        String ext = arr[1];
+        System.out.println(ext);
+
+
     }
 
 
